@@ -35,7 +35,7 @@ namespace BlogsConsole
                 Console.WriteLine("All blogs in the database:");
                 foreach (var item in query)
                 {
-                    Console.WriteLine(item.Name);
+                    Console.WriteLine($"Blog Name: {item.Name}");
                 }
             }
             catch (Exception ex)
@@ -67,7 +67,7 @@ namespace BlogsConsole
                         var query = db.Blogs.OrderBy(b => b.Name);
                         foreach(var item in query)
                         {
-                            Console.WriteLine(item.Name);
+                            Console.WriteLine($"Blog Name: {item.Name}");
                         }
 
 
@@ -114,6 +114,17 @@ namespace BlogsConsole
                 }
                 else if(Choose == "4")
                 {
+                        try{
+                        var db = new BloggingContext();
+                        var post = db.Posts;
+                        Console.WriteLine("All posts in the database:");
+                        foreach (var item in post){
+                            Console.WriteLine($"Post Name: {item.Title}\nPost Content: {item.Content}");
+                        }
+                    }
+                    catch (Exception ex){
+                        logger.Error(ex.Message);
+                    }
                 }
 
             } while(Choose == "1" || Choose == "2" || Choose == "3" || Choose == "4" );
